@@ -14,4 +14,4 @@ r = requests.get('https://starwars.fandom.com/wiki/Special:Random', allow_redire
 tootStr = r.headers['Location']
 
 #put that shit out there!
-mastodon.status_post(tootStr)
+mastodon.status_post(tootStr + "#StarWars")
