@@ -1,6 +1,7 @@
 import sys
 import requests
 from mastodon import Mastodon
+from bs4 import BeautifulSoup
 
 #   Set up Mastodon
 mastodon = Mastodon(
@@ -13,5 +14,19 @@ r = requests.get('https://starwars.fandom.com/wiki/Special:Random', allow_redire
 
 tootStr = r.headers['Location']
 
+content = requests.get(tootStr)
+
+timeline = ""
+
+if "Category:Legends articles" in content.text:
+    timeline = "Legends"
+elif "Category:Canon articles" in content.text:
+    timeline = "Canon"
+elif "Category:Real-world" in content.text:
+    timeline = "Real world"
+
+print(timeline)
+print(tootStr)
+
 #put that shit out there!
-mastodon.status_post(tootStr + " #StarWars")
+# mastodon.status_post(tootStr + " #StarWars")
