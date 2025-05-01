@@ -1,8 +1,8 @@
 import sys
+import re
 import requests
 from mastodon import Mastodon
 from bs4 import BeautifulSoup
-from cleantext import clean
 
 #   Set up Mastodon
 mastodon = Mastodon(
@@ -32,12 +32,21 @@ text = soup.find_all('p')
 
 print(tootStr)
 
+CLEANR = re.compile('<.*?>') 
+
+desc = ""
+
 for item in text:
     if "class=" in str(item):
         if "/aside" in str(item):
-            print(str(item).split("/aside")[1])
+            desc = re.sub(CLEANR, '', str(item).split("/aside")[1].split("\n")[1])
 
+if desc == "":
+    finalTootStr = tootStr + "\n\n" + timeline + "\n\n" + "#StarWars"
+else:
+    finalTootStr = tootStr + "\n\n" + timeline + "\n\n" + desc + "\n\n" + "#StarWars"
 
+print(finalTootStr)
 
 #put that shit out there!
-# mastodon.status_post(tootStr + " #StarWars")
+mastodon.status_post(tootStr + " #StarWars")
