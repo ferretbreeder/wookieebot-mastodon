@@ -25,7 +25,15 @@ elif "Category:Canon articles" in content.text:
 elif "Category:Real-world" in content.text:
     timeline = "Real world"
 
-print(timeline)
+soup = BeautifulSoup(content.text, 'html.parser')
+text_first = soup.select('.mw-content-ltr')
+
+p_tags = text_first[0].find_all(text=True)
+
+for item in p_tags:
+    if len(item) > 10:
+        print(item)
+
 print(tootStr)
 
 #put that shit out there!
