@@ -49,4 +49,4 @@ else:
 print(finalTootStr)
 
 #put that shit out there!
-mastodon.status_post(tootStr + " #StarWars")
+mastodon.status_post(finaltootStr + " #StarWars")
