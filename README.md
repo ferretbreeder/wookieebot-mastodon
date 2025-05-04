@@ -21,7 +21,7 @@ Installation is as simple as cloning the repo...
 
 ...and then creating a ```token.secret``` file. This will be populated with only your unique access token that you get when you create an application on the Mastodon account that houses your bot.
 
-[a screenshot of a Mastodon application settings page with three access keys](img/client-secret.png "Access Keys")
+![image](https://github.com/user-attachments/assets/f5f3e193-ce08-4ef3-9bf0-2708871110e6)
 
 ## Usage
 
